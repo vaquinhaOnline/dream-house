@@ -1,0 +1,297 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    color:white;
+    text-align:center;
+
+    /* PERMITE ROLAR */
+    min-height:100vh;
+    overflow-y:auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+
+    padding:60px 20px;
+
+    background:
+        radial-gradient(circle at top left,
+            rgba(37,211,102,0.25),
+            transparent 40%),
+
+        linear-gradient(
+            rgba(0,0,0,0.8),
+            rgba(0,0,0,0.9)
+        ),
+
+        url("fundo.webp");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.container{
+    background: rgba(20,20,20,0.55);
+    backdrop-filter: blur(18px);
+    padding:55px;
+    border-radius:28px;
+    max-width:600px;
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.7),
+        inset 0 0 20px rgba(255,255,255,0.05);
+
+    animation: aparecer 1s ease;
+    margin-top:40px;
+    margin-bottom:80px;
+}
+
+@keyframes aparecer{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+h1{
+    font-size:2.5rem;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:1.2rem;
+    line-height:1.7;
+    opacity:0.9;
+}
+
+.btn-ajudar{
+    margin-top:30px;
+    padding:18px 40px;
+    font-size:20px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    color:white;
+    font-weight:bold;
+
+    background: linear-gradient(135deg,#25D366,#128C7E);
+
+    transition:0.3s;
+}
+
+.btn-ajudar:hover{
+    transform:translateY(-3px) scale(1.05);
+    box-shadow:0 10px 25px rgba(37,211,102,0.5);
+}
+
+.whatsapp-float{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+}
+
+.whatsapp-float img{
+    width:65px;
+    transition:0.3s;
+}
+
+.whatsapp-float img:hover{
+    transform:scale(1.15);
+}
+/* AREA DA VAQUINHA */
+.progresso-area{
+    margin-top:30px;
+}
+
+.valor{
+    font-size:2rem;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.barra{
+    width:100%;
+    height:18px;
+    background:rgba(255,255,255,0.2);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.barra-preenchida{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#25D366,#00ffcc);
+    border-radius:20px;
+    transition:1s;
+}
+
+.meta{
+    margin-top:8px;
+    font-size:0.9rem;
+    opacity:0.8;
+}
+body::after{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    top:-50%;
+    left:-50%;
+    background: radial-gradient(
+        rgba(255,255,255,0.05),
+        transparent 70%
+    );
+    animation: moverFundo 25s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes moverFundo{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes pulsarBotao {
+
+    0%{
+        transform:scale(1);
+        box-shadow:0 0 0 rgba(37,211,102,0.4);
+    }
+
+    50%{
+        transform:scale(1.05);
+        box-shadow:0 0 25px rgba(37,211,102,0.6);
+    }
+
+    100%{
+        transform:scale(1);
+        box-shadow:0 0 0 rgba(37,211,102,0.4);
+    }
+}
+
+.btn-ajudar{
+    animation:pulsarBotao 2.5s infinite;
+}
+
+.btn-ajudar:hover{
+    animation:none;
+    transform:scale(1.07);
+}
+
+.valores-sugeridos{
+    margin-top:25px;
+}
+
+.botoes-valores button{
+    margin:6px;
+    padding:10px 18px;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    background:rgba(255,255,255,0.15);
+    color:white;
+    transition:0.3s;
+}
+
+.botoes-valores button:hover{
+    background:#25D366;
+    transform:scale(1.08);
+}
+
+.pagina-obrigado{
+    background:
+        radial-gradient(circle at center,
+        rgba(37,211,102,0.25),
+        transparent 60%),
+
+        linear-gradient(
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.95)
+        ),
+
+        url("Casa.webp");
+
+    background-size:cover;
+    background-position:center;
+}
+
+.obrigado-card{
+    text-align:center;
+    animation: subir 1s ease;
+}
+
+.check{
+    font-size:70px;
+    margin-bottom:20px;
+    animation: aparecerCheck 1s ease;
+}
+
+@keyframes subir{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes aparecerCheck{
+    0%{
+        transform:scale(0);
+    }
+    70%{
+        transform:scale(1.2);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+.coracoes{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.coracao{
+    position:absolute;
+    bottom:-50px;
+    font-size:22px;
+    animation: subirCoracao linear forwards;
+    opacity:0.8;
+}
+
+@keyframes subirCoracao{
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:0.9;
+    }
+    100%{
+        transform:translateY(-110vh) scale(1.5);
+        opacity:0;
+    }
+}
