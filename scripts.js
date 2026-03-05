@@ -1,4 +1,4 @@
-const meta = 5000;    
+const meta = 5000;
 
 let valorAtual = localStorage.getItem("valorArrecadado");
 
@@ -12,16 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const elemento = document.getElementById("contador");
 
-    if(elemento){
-        elemento.innerText = valorAtual.toLocaleString("pt-BR");
-    }
+    elemento.innerText = valorAtual.toLocaleString("pt-BR");
 
-    const porcentagem = Math.min((valorAtual / meta) * 100, 100);
+    const porcentagem = (valorAtual / meta) * 100;
 
-    const barra = document.getElementById("barra");
-    if(barra){
-        barra.style.width = porcentagem + "%";
-    }
+    document.getElementById("barra").style.width =
+        porcentagem + "%";
 
 });
 
@@ -46,9 +42,11 @@ function irParaPagamento(){
     }
 
     valorAtual += valorSelecionado;
+
     localStorage.setItem("valorArrecadado", valorAtual);
 
-    const link = "https://nubank.com.br/cobrar/17dl27/69a48122-a633-4095-9844-337c3d803ca7?amount=" + valorSelecionado;
+    const link =
+    "https://nubank.com.br/cobrar/17dl27/69a48122-a633-4095-9844-337c3d803ca7?amount=" + valorSelecionado;
 
     window.open(link, "_blank");
 
