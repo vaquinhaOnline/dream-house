@@ -1,4 +1,4 @@
-const meta = 5000;
+const meta = 3000;
 
 let valorAtual = localStorage.getItem("valorArrecadado");
 
@@ -12,9 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const elemento = document.getElementById("contador");
 
-    elemento.innerText = valorAtual.toLocaleString("pt-BR");
+    elemento.innerText = valorAtual.toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 
-    const porcentagem = (valorAtual / meta) * 100;
+    const porcentagem = Math.min((valorAtual / meta) * 100,100);
 
     document.getElementById("barra").style.width =
         porcentagem + "%";
@@ -76,3 +79,4 @@ function criarCoracao(){
 }
 
 setInterval(criarCoracao, 400);
+
