@@ -294,4 +294,11 @@ body::after{
         transform:translateY(-110vh) scale(1.5);
         opacity:0;
     }
+
+} 
+
+.valores button.ativo{
+background:#00ff9c;
+color:#000;
+transform:scale(1.1);
 }
