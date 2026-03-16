@@ -368,3 +368,24 @@ transform:scale(1.1);
     font-size:16px;
     cursor:pointer;
 }
+
+.modal-conteudo{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+    width:320px;
+    transform:scale(0.7);
+    animation:zoomPix 0.35s ease forwards;
+}
+
+@keyframes zoomPix{
+    from{
+        transform:scale(0.7);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
