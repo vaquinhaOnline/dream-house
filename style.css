@@ -390,33 +390,89 @@ transform:scale(1.1);
     }
 }
 
-#modalPix{
+/* MODAL PIX */
+.modal {
     position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.6);
-    display:none;
-    justify-content:center;
-    align-items:center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7); /* fundo escuro semi-transparente */
+    display: none; /* só aparece quando JS define display: flex */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
 }
 
-.modal-conteudo{
-    background:white;
-    padding:25px;
-    border-radius:15px;
-    text-align:center;
-    animation: zoomModal 0.35s ease;
+.modal-conteudo {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transform: scale(0); /* começa invisível para animar */
+    animation: zoomIn 0.5s forwards; /* animação de zoom */
+    font-family: 'Arial', sans-serif;
 }
 
-@keyframes zoomModal{
-    from{
-        transform: scale(0.6);
-        opacity:0;
+/* animação de zoom */
+@keyframes zoomIn {
+    0% { transform: scale(0); opacity: 0; }
+    60% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* título e texto */
+.modal-conteudo h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.modal-conteudo p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* QR Code centralizado */
+#qrcodeModal {
+    margin: 15px 0;
+}
+
+/* botão copiar */
+#copiarPixBtn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+}
+
+#copiarPixBtn:hover {
+    background-color: #45a049;
+}
+
+/* emoji do coração no modal */
+.modal-conteudo h2::after {
+    content: " ❤️";
+}
+
+/* responsivo para celular */
+@media (max-width: 500px){
+    .modal-conteudo {
+        width: 95%;
+        padding: 20px;
     }
-    to{
-        transform: scale(1);
-        opacity:1;
+    .modal-conteudo h2 {
+        font-size: 1.3em;
+    }
+    .modal-conteudo p {
+        font-size: 1em;
     }
 }
