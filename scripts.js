@@ -19,15 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const elemento = document.getElementById("contador");
 
-    elemento.innerText = valorAtual.toLocaleString("pt-BR", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+    elemento.innerText = valorAtual.toLocaleString("pt-BR",{
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
     });
 
     const porcentagem = Math.min((valorAtual / meta) * 100, 100);
 
-    document.getElementById("barra").style.width =
-        porcentagem + "%";
+    document.getElementById("barra").style.width = porcentagem + "%";
 
 });
 
@@ -61,16 +60,19 @@ function irParaPagamento(){
     window.open(link, "_blank");
 
     valorAtual += valorSelecionado;
+
     localStorage.setItem("valorArrecadado", valorAtual);
 
     const porcentagem = Math.min((valorAtual / meta) * 100, 100);
+
     document.getElementById("barra").style.width = porcentagem + "%";
+
     document.getElementById("contador").innerText =
     valorAtual.toLocaleString("pt-BR",{
         minimumFractionDigits:2,
         maximumFractionDigits:2
     });
-    
+
     setTimeout(()=>{
         window.location.href = "obrigado.html";
     },3000);
@@ -78,7 +80,7 @@ function irParaPagamento(){
 
 function gerarPix(){
 
-    const valor = Number(document.getElementById("valorLivre").value);
+    const valor = Number(document.getElementById("valorLivre").value).toFixed(2);
 
     if(!valor || valor <= 0){
         alert("Digite um valor válido");
@@ -121,29 +123,39 @@ function gerarPix(){
         ) +
         format("52","0000") +
         format("53","986") +
-        format("54",valor.toFixed(2)) +
+        format("54",valor) +
         format("58","BR") +
         format("59",nome) +
         format("60",cidade) +
         format("62",format("05","Doacao"));
 
     payload += "6304";
-
     payload += crc16(payload);
 
-    const area = document.getElementById("areaPix");
+    const modal = document.getElementById("modalPix");
 
-    area.innerHTML = "";
-    area.innerHTML += `<p>Valor: R$ ${valor.toFixed(2)}</p>`;
-    area.innerHTML += `<div id="qrcode"></div>`;
-    area.innerHTML += `<button id="copiarPixBtn">Copiar código PIX</button>`;
-    document.getElementById("copiarPixBtn").onclick = () => copiarPix(payload);
+    modal.style.display = "flex";
 
-    new QRCode(document.getElementById("qrcode"), {
+    document.getElementById("valorModal").innerText =
+    "Valor: R$ " + valor;
+
+    const qrArea = document.getElementById("qrcodeModal");
+
+    qrArea.innerHTML = "";
+
+    new QRCode(qrArea,{
         text: payload,
-        width: 220,
-        height: 220
+        width:220,
+        height:220
     });
+
+    document.getElementById("copiarPixBtn").onclick = () => {
+
+        copiarPix(payload);
+
+        document.getElementById("modalPix").style.display = "none";
+
+    };
 
 }
 
@@ -155,14 +167,17 @@ function copiarPix(codigo){
 function criarCoracao(){
 
     const area = document.querySelector(".coracoes");
+
     if(!area) return;
 
     const coracao = document.createElement("div");
 
     coracao.classList.add("coracao");
+
     coracao.innerHTML = "❤️";
 
     coracao.style.left = Math.random() * 100 + "vw";
+
     coracao.style.animationDuration = (4 + Math.random() * 3) + "s";
 
     area.appendChild(coracao);
@@ -173,3 +188,11 @@ function criarCoracao(){
 }
 
 setInterval(criarCoracao, 400);
+
+document.getElementById("modalPix").addEventListener("click", function(e){
+
+    if(e.target === this){
+        this.style.display = "none";
+    }
+
+});
